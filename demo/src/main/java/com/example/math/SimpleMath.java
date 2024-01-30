@@ -1,10 +1,6 @@
 package com.example.math;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 public class SimpleMath {
-    @RequestMapping(value = "/sum/{numberOne}/{numberTwo}", method = RequestMethod.GET)
     public Double sum(Double numberOne, Double numberTwo) {
         return numberOne + numberTwo;
     }
@@ -18,7 +14,7 @@ public class SimpleMath {
     }
 
     public Double div(Double numberOne, Double numberTwo) {
-        return numberOne - numberTwo;
+        return numberOne / numberTwo;
     }
 
     public Double avr(Double numberOne, Double numberTwo) {

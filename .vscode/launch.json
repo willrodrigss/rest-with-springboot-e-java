@@ -4,6 +4,13 @@
             "type": "java",
             "name": "Startup",
             "request": "launch",
+            "mainClass": "com.example.Startup",
+            "projectName": "demo"
+        },
+        {
+            "type": "java",
+            "name": "Startup",
+            "request": "launch",
             "mainClass": "com.example.startup.Startup",
             "projectName": "demo"
         },
