@@ -1,5 +1,7 @@
 package com.example.controllers;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.model.Person;
@@ -17,9 +19,13 @@ public class PersonController {
     private PersonServices service;
     //private PersonServices service = new PersonServices();
 
-    @RequestMapping(value= "/{id}", method= RequestMethod.GET, produces= org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
-    public Person findById(@PathVariable(value = "id") String id) throws Exception{
+    @RequestMapping(method= RequestMethod.GET, produces= org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+    public List<Person> findAll() {
+        return service.findAll();
+    }
 
+    @RequestMapping(value= "/{id}", method= RequestMethod.GET, produces= org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+    public Person findById(@PathVariable(value = "id") String id){
         return service.findById(id);
     }
 }
