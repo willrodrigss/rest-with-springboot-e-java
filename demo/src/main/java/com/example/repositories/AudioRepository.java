@@ -3,7 +3,7 @@ package com.example.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.model.Person;
+import com.example.model.Audio;
 
 @Repository
-public interface PersonRepository extends JpaRepository<Person, Long> {}
+public interface AudioRepository extends JpaRepository<Audio, Long> {}
