@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.exceptions.ResourceNotFoundException;
 import com.example.mapper.DozerMapper;
+import com.example.mapper.WindFarmMapper;
 import com.example.vo.v1.WindFarmVO;
 import com.example.model.WindFarm;
 import com.example.repositories.WindFarmRepository;
@@ -21,6 +22,9 @@ public class WindFarmServices {
 
     @Autowired
     WindFarmRepository repository;
+
+    @Autowired
+    WindFarmMapper mapper;
 
     public List<WindFarmVO> findAll(){
         logger.info("Finding all wind farms!");
@@ -36,13 +40,13 @@ public class WindFarmServices {
         var entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
 
         
-        return DozerMapper.parseObject(entity, WindFarmVO.class);
+        return mapper.convertEntityToVO(entity);
     }
     
     public WindFarmVO create(WindFarmVO windFarm){
         logger.info("Creating one wind farm!");
-        var entity = DozerMapper.parseObject(windFarm, WindFarm.class);
-        var vo = DozerMapper.parseObject(repository.save(entity), WindFarmVO.class);
+        var entity = mapper.convertVOtoEntity(windFarm);
+        var vo = mapper.convertEntityToVO(repository.save(entity));
         return vo;
     }
 
@@ -56,7 +60,7 @@ public class WindFarmServices {
         entity.setName(windFarm.getName()); 
         entity.setLocation(windFarm.getLocation());
         
-        var vo = DozerMapper.parseObject(repository.save(entity), WindFarmVO.class);
+        var vo = mapper.convertEntityToVO(repository.save(entity));
         return vo;
     }
 
